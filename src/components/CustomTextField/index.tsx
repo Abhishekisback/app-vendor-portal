@@ -42,12 +42,20 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
             }}
             sx={{
               "& input::placeholder": {
-                fontSize: "14px",
-                fontWeight: 500,
-                color: customStyles?.color ? customStyles.color : "#808080",
-                backgroundColor: customStyles?.backgroundColor
-                  ? customStyles.backgroundColor
-                  : "#FFF",
+                padding: customStyles?.padding
+                  ? customStyles?.padding
+                  : "10px 0px 9px 0px;",
+                fontSize: customStyles?.fontSize
+                  ? customStyles?.fontSize
+                  : "12px",
+                fontWeight: 400,
+                fontStyle: "normal",
+                color: "black",
+                width: "fit-content",
+                lineHeight: customStyles?.lineHeight
+                  ? customStyles.lineHeight
+                  : "18px",
+                backgroundColor: "#FFF",
               },
 
               "& .MuiInputBase-input": {
@@ -84,10 +92,10 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
                 "&:hover fieldset": {
                   border: customStyles?.border
                     ? customStyles.border
-                    : "2px solid #CDCDCD",
+                    : "2px solid #cdcdcd96",
                 },
                 "&.Mui-focused fieldset": {
-                  borderColor: "#cdcdcd82",
+                  border: "2px solid #CDCDCD",
                 },
                 "&.MuiInputBase-input": {
                   flexShrink: 0,

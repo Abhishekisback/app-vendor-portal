@@ -162,9 +162,9 @@ export default function Home() {
           height: "60px",
           textAlign: "center",
           padding: "10px",
-          backgroundColor: "#f9fbfb52",
-          display:"flex",
-          gap:"15px"
+          backgroundColor: "#73f3f3c8",
+          display: "flex",
+          gap: "15px",
         }}
       >
         <CustomSearchField2
@@ -176,10 +176,10 @@ export default function Home() {
           id="search"
           placeHolder="Search RFQ#"
           isAvailable={true}
-          customStyles={{height:"30px",width:"160px"}}
+          customStyles={{ height: "30px", width: "160px" }}
           iconStyles={{ width: "24px", height: "24px" }}
         />
-         <CustomSearchField2
+        <CustomSearchField2
           icon={searchIcon}
           OnChange={(e) => {
             setInput(e);
@@ -188,10 +188,10 @@ export default function Home() {
           id="search"
           placeHolder="Search RFQ#"
           isAvailable={true}
-          customStyles={{height:"30px",width:"160px"}}
+          customStyles={{ height: "30px", width: "160px" }}
           iconStyles={{ width: "24px", height: "24px" }}
         />
-         <CustomSearchField2
+        <CustomSearchField2
           icon={searchIcon}
           OnChange={(e) => {
             setInput(e);
@@ -200,10 +200,10 @@ export default function Home() {
           id="search"
           placeHolder="Search RFQ#"
           isAvailable={true}
-          customStyles={{height:"30px",width:"160px"}}
+          customStyles={{ height: "30px", width: "160px" }}
           iconStyles={{ width: "24px", height: "24px" }}
         />
-         <CustomSearchField2
+        <CustomSearchField2
           icon={searchIcon}
           OnChange={(e) => {
             setInput(e);
@@ -212,10 +212,10 @@ export default function Home() {
           id="search"
           placeHolder="Search RFQ#"
           isAvailable={true}
-          customStyles={{height:"30px",width:"160px"}}
+          customStyles={{ height: "30px", width: "160px" }}
           iconStyles={{ width: "24px", height: "24px" }}
         />
-         <CustomSearchField2
+        <CustomSearchField2
           icon={searchIcon}
           OnChange={(e) => {
             setInput(e);
@@ -224,12 +224,10 @@ export default function Home() {
           id="search"
           placeHolder="Search RFQ#"
           isAvailable={true}
-          customStyles={{height:"30px",width:"160px"}}
+          customStyles={{ height: "30px", width: "160px" }}
           iconStyles={{ width: "24px", height: "24px" }}
         />
       </div>
-
-
 
       <table>
         <tbody>
@@ -304,7 +302,7 @@ export default function Home() {
       </button>
 
       <CustomModal
-      isBackgroundGray={false}
+        isBackgroundGray={false}
         onclose={() => {
           setModal(false);
         }}
@@ -449,7 +447,7 @@ export default function Home() {
         name="search"
         type="text"
         OnChange={handlechange}
-        customStyles={customTextFieldStyles}
+        customStyles={{}}
         placeHolder="Search here"
         isAvailable={true}
       />
@@ -458,7 +456,7 @@ export default function Home() {
         name="password"
         type="password"
         OnChange={() => {}}
-        customStyles={customTextFieldStyles}
+        customStyles={{}}
         placeHolder="QT-1234"
         isAvailable={true}
         id="textfield1"
@@ -504,11 +502,6 @@ export default function Home() {
         lineCount={4}
         isAvailable={true}
         customStyles={{
-          width: "300px",
-          height: "80px",
-          border: "2px solid #ADADAD",
-          padding: "0px 9px 9px 5px",
-          fontSize: "16px",
           fontFamily: poppins.style.fontFamily,
         }}
         OnChange={(value) => {
@@ -526,7 +519,7 @@ export default function Home() {
         OnChange={(value) => {
           console.log(value);
         }}
-        labelStyles={{ color: "green", fontFamily: poppins.style.fontFamily }}
+        labelStyles={{ fontFamily: poppins.style.fontFamily }}
         size="25px"
         fillColor="blue"
         isAvailable={true}

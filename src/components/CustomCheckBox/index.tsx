@@ -49,7 +49,16 @@ const Checkboxes: React.FC<CheckBoxProps> = ({
     <>
       <Tooltip arrow title={isAvailable ? "" : DEV_UNDER_PROCESS}>
         <div style={styles}>
-          <label style={labelStyles}>
+          <label
+            style={{
+              ...labelStyles,
+
+              fontSize: "10px",
+              fontWeight: "500",
+              fontStyle: "normal",
+              lineHeight: "normal",
+            }}
+          >
             <Checkbox
               name={name}
               checked={selected}
@@ -59,8 +68,7 @@ const Checkboxes: React.FC<CheckBoxProps> = ({
                 "&.Mui-checked": {
                   color: fillColor ? fillColor : "#13A4CC",
                 },
-                "& .MuiSvgIcon-root": { fontSize: size ? size : "15px" },
-                
+                "& .MuiSvgIcon-root": { fontSize: size ? size : "18px" },
               }}
               disabled={isAvailable ? false : true}
             />

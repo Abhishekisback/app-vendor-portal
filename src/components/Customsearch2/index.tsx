@@ -67,11 +67,12 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                   : "12px",
                 fontWeight: 400,
                 fontStyle: "normal",
-                color: customStyles?.color ? customStyles.color : "#808080",
+                color:"black",
                 width: "fit-content",
                 lineHeight: customStyles?.lineHeight
                   ? customStyles.lineHeight
                   : "18px",
+                  backgroundColor:"white"
               },
 
               "& .MuiInputBase-input": {
@@ -80,7 +81,7 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                   : "6px 10px 9px 0px;",
                 width: customStyles?.width || "160px",
                 height: customStyles?.height || "35px",
-                color: customStyles?.color || "#808080",
+                color: customStyles?.color || "#333333",
                 backgroundColor: customStyles?.backgroundColor
                   ? customStyles.backgroundColor
                   : "#FFF",
@@ -109,7 +110,7 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                     : "",
                 },
                 "&:hover fieldset": {
-                  backgroundColor: "#edf1f245",
+                  backgroundColor: "",
                 },
                 "&.Mui-focused fieldset": {
                   border: "3px solid #13A4CC ",
