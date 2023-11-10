@@ -1,105 +1,122 @@
 "use client";
 import React, { useState } from "react";
-import { alpha, styled } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import { DEV_UNDER_PROCESS } from "../../constants/index";
+import { Typography, TextField, Tooltip, Box } from "@mui/material";
 
-interface TextAreaProps {
+interface customTextAreaProps {
+  isAvailable?: boolean;
+  lineCount: number;
   id: string;
+  showTextCount?: boolean;
   maxLimit: number;
   placeHolder: string;
   customStyles?: {
     [key: string]: any;
   };
-  OnChange?:(event:React.ChangeEvent<HTMLInputElement>)=>void;
+  OnChange: (value: string) => void;
 }
 
-const CssTextField = styled(TextField)({
-  "& label.Mui-focused": {
-    color: "#A0AAB4",
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: "#B2BAC2",
-  },
-  "& .MuiInputBase-root": {
-    backgroundColor: "#EEEEEE",
-    color: "#808080",
-    fontSize: "14px",
-  },
-
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      border: "2px solid #EEEEEE",
-    },
-    "&:hover fieldset": {
-      border: "none",
-      borderColor: "none",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#EEEEEE",
-    },
-  },
-});
-
-const CustomTextArea: React.FC<TextAreaProps> = ({
-  id,
+const CustomTextArea: React.FC<customTextAreaProps> = ({
+  isAvailable,
+  lineCount,
   maxLimit,
-  customStyles,
+  showTextCount = false,
   placeHolder,
   OnChange,
+  customStyles,
+  id,
 }) => {
   const [comment, setComment] = useState<string>("");
   const maxCharLimit = maxLimit;
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
-
     if (inputText.length <= maxCharLimit) {
-      setComment(inputText);
+      setComment(e.target.value);
+      OnChange(e.target.value);
     }
   };
 
   return (
-    <Box
-      sx={{
-        width: customStyles?.width ? customStyles.width : "400px",
-      }}
-    >
-      <CssTextField
-        multiline
-        rows={3}
+    <>
+      <Tooltip arrow title={isAvailable ? "" : DEV_UNDER_PROCESS}>
+        <Box sx={{ width: "fit-content", height: "fit-content" }}>
+          <TextField
+            value={comment}
+            multiline
+            rows={lineCount}
+            id={id}
+            disabled={isAvailable ? false : true}
+            variant="outlined"
+            placeholder={placeHolder}
+            onChange={handleCommentChange}
+            sx={{
+              "& input::placeholder": {
+                fontSize: customStyles?.fontSize
+                  ? customStyles?.fontSize
+                  : "14px",
+                fontWeight: 500,
+                color: customStyles?.color ? customStyles.color : "#808080",
+                backgroundColor: customStyles?.backgroundColor
+                  ? customStyles.backgroundColor
+                  : "#FFF",
+              },
 
-        value={comment}
-        onChange={OnChange}
-        placeholder={placeHolder}
-        id="custom-css-outlined-input"
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            border: customStyles?.border || "2px solid #CDCDCD",
-            backgroundColor: customStyles?.backgroundColor || "#EEEEEE",
-            width: customStyles?.width ? customStyles?.width : "400px",
-            height: customStyles?.height || "100px",
-            paddingTop: "2px",
-            ...customStyles,
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: customStyles?.borderColor
-              ? customStyles?.borderColor
-              : " #EEEEEE",
-          },
-        }}
+              "& .MuiInputBase-input": {
+                padding: customStyles?.padding
+                  ? customStyles?.padding
+                  : "7px 0px 8px 9px",
+                width: customStyles?.width || "180px",
+                height: customStyles?.height || "30px",
+                color: customStyles?.color || "#808080",
+                backgroundColor: "#FFF",
+                fontSize: customStyles?.fontSize
+                  ? customStyles?.fontSize
+                  : "14px",
+                fontStyle: customStyles?.fontStyle
+                  ? customStyles?.fontStyle
+                  : "normal",
+                fontWeight: customStyles?.fontWeight
+                  ? customStyles?.fontWeight
+                  : "400",
+                lineHeight: customStyles?.lineHeight
+                  ? customStyles?.lineHeight
+                  : "normal",
+              },
 
-      
-      />
-
-      {/* <Typography
-        color={comment.length >= maxCharLimit ? "error" : "textPrimary"}
-      >
-        {comment.length >= maxCharLimit && <p>Maximum characters reached</p>}
-        {`${comment.length}/${maxCharLimit}`} characters
-      </Typography> */}
-    </Box>
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  border: customStyles?.border
+                    ? customStyles.border
+                    : "2px solid #CDCDCD",
+                  borderRadius: customStyles?.borderRadius
+                    ? customStyles.borderRadius
+                    : "4px",
+                },
+                "&:hover fieldset": {
+                  border: customStyles?.border
+                    ? customStyles.border
+                    : "2px solid #CDCDCD",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#cdcdcd82",
+                },
+                "&.MuiInputBase-input": {
+                  flexShrink: 0,
+                },
+              },
+            }}
+          />
+          {showTextCount && (
+            <Typography
+              color={comment.length >= maxCharLimit ? "error" : "#808080"}
+            >
+              {`${comment.length}/${maxCharLimit}`} characters
+            </Typography>
+          )}
+        </Box>
+      </Tooltip>
+    </>
   );
 };
 

@@ -26,8 +26,8 @@ const CustomIcon: React.FC<CustomIconProps> = ({
       ? customStyles.backgroundColor
       : "#A0DBEB",
     borderRadius: "4px",
-    height: "40px" || customStyles?.height,
-    width: "40px" || customStyles?.width,
+    height: customStyles?.height ? customStyles.height : "40px",
+    width: customStyles?.width ? customStyles.width : "40px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

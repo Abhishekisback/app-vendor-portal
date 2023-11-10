@@ -1,44 +1,66 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import Tooltip from "@mui/material/Tooltip";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
-import { poppins } from "@/app/fonts";
-
 
 interface CheckBoxProps {
+  borderColor?: string;
+  name: string;
   label: string;
   isAvailable: boolean;
+  fillColor: string;
+  size: string;
+  labelStyles?: {
+    [key: string]: any;
+  };
+  OnChange: (value: string) => void;
 }
 
-const Checkboxes: React.FC<CheckBoxProps> = ({ label, isAvailable }) => {
+const Checkboxes: React.FC<CheckBoxProps> = ({
+  label,
+  borderColor,
+  fillColor,
+  isAvailable,
+  size,
+  labelStyles,
+  OnChange,
+  name,
+}) => {
   const [selected, setSelected] = useState<boolean>(false);
+  const [value, setValue] = useState<string>("Not Checked");
 
   const handleClick = () => {
     setSelected(!selected);
   };
 
-  const styles:React.CSSProperties={
-     width:"fit-content",
-     marginLeft:"0px"
-  }
+  useEffect(() => {
+    const newValue = selected ? "Checked" : "Not Checked";
+    setValue(newValue);
+    OnChange(newValue);
+  }, [selected, OnChange]);
+
+  const styles: React.CSSProperties = {
+    width: "fit-content",
+    marginLeft: "0px",
+  };
 
   return (
     <>
       <Tooltip arrow title={isAvailable ? "" : DEV_UNDER_PROCESS}>
         <div style={styles}>
-          <label>
+          <label style={labelStyles}>
             <Checkbox
+              name={name}
               checked={selected}
-              onChange={(e) => {
-                handleClick();
-              }}
+              onChange={handleClick}
               sx={{
-                color: "#111111",
+                color: borderColor ? borderColor : "#ADADAD",
                 "&.Mui-checked": {
-                  color: "#13A4CC",
-                  fontFamily: poppins.style.fontFamily,
+                  color: fillColor ? fillColor : "#13A4CC",
                 },
+                "& .MuiSvgIcon-root": { fontSize: size ? size : "15px" },
+                
               }}
               disabled={isAvailable ? false : true}
             />

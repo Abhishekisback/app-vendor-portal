@@ -1,10 +1,9 @@
-"use client";
 import React from "react";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Image from "next/image";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
-
+ 
 interface CustomButtonProps {
   id: string;
   startIcon?: string;
@@ -17,7 +16,7 @@ interface CustomButtonProps {
   };
   OnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
-
+ 
 const CustomButton: React.FC<CustomButtonProps> = ({
   startIcon,
   id,
@@ -32,7 +31,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     textTransform: "none",
     display: "inline-flex",
     height: customStyles?.height ? customStyles?.height : "40px",
-    width: customStyles?.width ? customStyles?.width : "120px",
+    width: customStyles?.width ? customStyles?.width : "130px",
     padding: customStyles?.padding
       ? customStyles?.padding
       : "6px, 12px, 2px, 10px",
@@ -49,10 +48,10 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       : "#FFF",
     border: customStyles?.border ? customStyles?.border : "2px solid#E0E0E0",
     color: customStyles?.color ? customStyles?.color : "#13A4CC",
-
+ 
     ...customStyles,
   };
-
+ 
   return (
     <>
       <Tooltip title={isAvailable ? "" : DEV_UNDER_PROCESS} arrow>
@@ -91,5 +90,5 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     </>
   );
 };
-
+ 
 export default CustomButton;

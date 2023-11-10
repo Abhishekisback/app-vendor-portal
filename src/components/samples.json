@@ -1,0 +1,92 @@
+[
+  {
+    "clientname": "VFG",
+    "RFQNO": "RFQ-RIAP/D/22/255",
+    "Vesselname": "COHI Clearocean Hickary",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "16-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "VFG",
+    "RFQNO": "RFQ-RIAP/D/22/256",
+    "Vesselname": "DEJU Dee5 juniper",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "17-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "ERVFG",
+    "RFQNO": "RFQ-ERTT/D/22/257",
+    "Vesselname": "COHI Clearocean Hickary",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "18-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "ERVFG",
+    "RFQNO": "RFQ-ERTT/D/22/258",
+    "Vesselname": "DEJU Dee6 juniper",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "19-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "BVGG",
+    "RFQNO": "RFQ-BVGG/D/22/259",
+    "Vesselname": "COHI Clearocean Hickary",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "20-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "BVGG",
+    "RFQNO": "RFQ-BVGG/D/22/260",
+    "Vesselname": "DEJU Dee7 juniper",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "21-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "NBMM",
+    "RFQNO": "RFQ-NBMM/D/22/261",
+    "Vesselname": "COHI Clearocean Hickary",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "22-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "NBMM",
+    "RFQNO": "RFQ-NBMM/D/22/262",
+    "Vesselname": "DEJU Dee8 juniper",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "23-feb-2023",
+    "supplyport": "New Request",
+    "supplydate": "22-dec-2023",
+    "status": "declined"
+  },
+  {
+    "clientname": "THDRH",
+    "RFQNO": "RFQ-THDRH/D/22/263",
+    "Vesselname": "COHI Clearocean Hickary",
+    "description": "lay flat hose gas freezer",
+    "RFQdate": "16-feb-2023",
+    "supplyport": "New Request",
+    "status": "declined",
+    "supplydate":"22-dec-2023"
+  }
+]

@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html className={poppins.className}>
-      
+ 
       <body>{children}</body>
       
     </html>
