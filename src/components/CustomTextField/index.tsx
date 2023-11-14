@@ -14,6 +14,12 @@ interface customTextFieldsProps {
   customStyles?: {
     [key: string]: any;
   };
+  focusStyles?: {
+    [key: string]: any;
+  };
+  hoverStyles?: {
+    [key: string]: any;
+  };
   OnChange: (value: string) => void;
 }
 
@@ -25,6 +31,8 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
   OnChange,
   customStyles,
   id,
+  focusStyles,
+  hoverStyles,
 }) => {
   return (
     <>
@@ -93,15 +101,19 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
                   : "4px",
               },
               "&:hover fieldset": {
-                border: customStyles?.border
-                  ? customStyles.border
+                border: hoverStyles?.border
+                  ? hoverStyles.border
                   : "2px solid #EDF1F2",
+                ...hoverStyles,
               },
               "&.Mui-focused fieldset": {
-                border: "3px solid #13A4CC ",
-                borderRadius: customStyles?.borderRadius
-                  ? customStyles.borderRadius
+                border: focusStyles?.border
+                  ? focusStyles.border
+                  : "3px solid #13A4CC ",
+                borderRadius: focusStyles?.borderRadius
+                  ? focusStyles.borderRadius
                   : "4px",
+                ...focusStyles,
               },
               "&.MuiInputBase-input": {
                 flexShrink: 0,

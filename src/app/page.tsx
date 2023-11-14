@@ -23,7 +23,7 @@ import { poppins } from "./fonts";
 import PDFViewer from "@/components/PDFViewer";
 import CustomModal from "@/components/CustomModal";
 import Chart from "@/components/ChartComponent";
-import CustomSearchField from "@/components/CustomSearchField";
+
 import CustomSearchField2 from "@/components/Customsearch2";
 import RFQData from "../components/samples.json";
 
@@ -111,7 +111,7 @@ export default function Home() {
     height: "40px",
     color: "#FFF",
     backgroundColor: "#13A4CC",
-    fontFamily:poppins.style.fontFamily
+    fontFamily: poppins.style.fontFamily,
   };
 
   const customButtonStyles4: React.CSSProperties = {
@@ -178,14 +178,16 @@ export default function Home() {
         customStyles={{
           height: "30px",
           width: "160px",
-          color: "#333333",
+          color: "#808080",
           borderRadius: "6px",
         }}
         iconStyles={{ width: "25px", height: "25px" }}
       />
 
       <CustomTextField
-        OnChange={() => {}}
+        OnChange={(value) => {
+          console.log("arun", value);
+        }}
         id="txt"
         name="comments"
         placeHolder="QT-1234"
@@ -196,6 +198,7 @@ export default function Home() {
           height: "30px",
           color: "red",
         }}
+    
       />
       <CustomTextArea
         showTextCount={true}

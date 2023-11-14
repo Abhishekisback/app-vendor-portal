@@ -122,7 +122,7 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                   border: hoverStyles?.border
                     ? hoverStyles.border
                     : "2px solid #EDF1F2",
-                    ...hoverStyles
+                  ...hoverStyles,
                 },
                 "&.Mui-focused fieldset": {
                   border: focusStyles?.border
@@ -131,7 +131,7 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                   borderRadius: focusStyles?.borderRadius
                     ? focusStyles.borderRadius
                     : "4px",
-                    ...focusStyles
+                  ...focusStyles,
                 },
                 "&.MuiInputBase-input": {
                   flexShrink: 0,
