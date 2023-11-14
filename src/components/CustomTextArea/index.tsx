@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
 import { Typography, TextField, Tooltip, Box } from "@mui/material";
+import { poppins } from "@/app/fonts";
 
 interface customTextAreaProps {
   isAvailable?: boolean;
@@ -130,6 +131,7 @@ const CustomTextArea: React.FC<customTextAreaProps> = ({
 
           {showTextCount && (
             <Typography
+            style={{color:"#808080", fontFamily:poppins.style.fontFamily}}
               color={comment.length >= maxCharLimit ? "error" : "#808080"}
             >
               {`${comment.length}/${maxCharLimit}`} characters
