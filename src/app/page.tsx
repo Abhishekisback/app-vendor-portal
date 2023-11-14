@@ -178,7 +178,7 @@ export default function Home() {
         customStyles={{
           height: "30px",
           width: "160px",
-          color: "green",
+          color: "#333333",
           borderRadius: "6px",
         }}
         iconStyles={{ width: "25px", height: "25px" }}
