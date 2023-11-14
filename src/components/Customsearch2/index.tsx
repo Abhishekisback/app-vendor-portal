@@ -18,6 +18,12 @@ interface customSearchFieldProps {
     [key: string]: any;
   };
   icon: string;
+  hoverStyles?: {
+    [key: string]: any;
+  };
+  focusStyles?: {
+    [key: string]: any;
+  };
   OnChange: (value: string) => void;
 }
 
@@ -29,6 +35,8 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
   id,
   iconStyles,
   icon,
+  focusStyles,
+  hoverStyles,
 }) => {
   const [text, settext] = useState("");
 
@@ -59,20 +67,17 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
             sx={{
               width: customStyles?.width ? customStyles.width : "160px",
               "& input::placeholder": {
-                padding: customStyles?.padding
-                  ? customStyles?.padding
-                  : "10px 0px 9px 0px;",
                 fontSize: customStyles?.fontSize
                   ? customStyles?.fontSize
                   : "12px",
                 fontWeight: 400,
                 fontStyle: "normal",
-                color:"black",
+                color: "#808080",
+                opacity: 1,
                 width: "fit-content",
                 lineHeight: customStyles?.lineHeight
                   ? customStyles.lineHeight
                   : "18px",
-                  backgroundColor:"white"
               },
 
               "& .MuiInputBase-input": {
@@ -100,21 +105,33 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                 borderRadius: customStyles?.borderRadius
                   ? customStyles.borderRadius
                   : "4px",
+
+                ...customStyles,
               },
 
               "& .MuiOutlinedInput-root": {
                 "& fieldset": {
-                  border: customStyles?.border ? customStyles.border : "none",
-                  boxShadow: customStyles?.boxShadow
-                    ? customStyles.boxShadow
-                    : "",
+                  border: customStyles?.border
+                    ? customStyles.border
+                    : "2px solid #CDCDCD",
+                  borderRadius: customStyles?.borderRadius
+                    ? customStyles.borderRadius
+                    : "4px",
                 },
                 "&:hover fieldset": {
-                  backgroundColor: "",
+                  border: hoverStyles?.border
+                    ? hoverStyles.border
+                    : "2px solid #EDF1F2",
+                    ...hoverStyles
                 },
                 "&.Mui-focused fieldset": {
-                  border: "3px solid #13A4CC ",
-                  borderRadius: "4px",
+                  border: focusStyles?.border
+                    ? focusStyles.border
+                    : "3px solid #13A4CC ",
+                  borderRadius: focusStyles?.borderRadius
+                    ? focusStyles.borderRadius
+                    : "4px",
+                    ...focusStyles
                 },
                 "&.MuiInputBase-input": {
                   flexShrink: 0,

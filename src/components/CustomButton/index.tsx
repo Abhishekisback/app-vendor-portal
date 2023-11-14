@@ -3,8 +3,14 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Image from "next/image";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
- 
+
 interface CustomButtonProps {
+  hoverStyles?: {
+    [key: string]: any;
+  };
+  focusStyles?: {
+    [key: string]: any;
+  };
   id: string;
   startIcon?: string;
   isAvailable: boolean;
@@ -14,56 +20,82 @@ interface CustomButtonProps {
   customStyles?: {
     [key: string]: any;
   };
+  iconStyles?: {
+    [key: string]: any;
+  };
   OnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
- 
+
 const CustomButton: React.FC<CustomButtonProps> = ({
   startIcon,
   id,
   endIcon,
   btnText,
   variant,
-  isAvailable,
+  isAvailable = false,
   customStyles,
   OnClick,
+  iconStyles,
+  focusStyles,
+  hoverStyles,
 }) => {
-  const Styles: React.CSSProperties = {
-    textTransform: "none",
-    display: "inline-flex",
-    height: customStyles?.height ? customStyles?.height : "40px",
-    width: customStyles?.width ? customStyles?.width : "130px",
-    padding: customStyles?.padding
-      ? customStyles?.padding
-      : "6px, 12px, 2px, 10px",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "4px",
-    borderRadius: customStyles?.backgroundColor
-      ? customStyles?.backgroundColor
-      : "4px",
-    flexShrink: 0,
-    backgroundColor: customStyles?.backgroundColor
-      ? customStyles?.backgroundColor
-      : "#FFF",
-    border: customStyles?.border ? customStyles?.border : "2px solid#E0E0E0",
-    color: customStyles?.color ? customStyles?.color : "#13A4CC",
- 
-    ...customStyles,
-  };
- 
   return (
-    <>
+    <div>
       <Tooltip title={isAvailable ? "" : DEV_UNDER_PROCESS} arrow>
         <Button
-          style={Styles}
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            textTransform: "none",
+            height: customStyles?.height ? customStyles?.height : "40px",
+            width: customStyles?.width ? customStyles?.width : "130px",
+            padding: customStyles?.padding
+              ? customStyles?.padding
+              : "6px, 12px, 2px, 10px",
+
+            borderRadius: customStyles?.backgroundColor
+              ? customStyles?.backgroundColor
+              : "4px",
+            flexShrink: 0,
+            backgroundColor: customStyles?.backgroundColor
+              ? customStyles?.backgroundColor
+              : "#FFF",
+            border: customStyles?.border
+              ? customStyles?.border
+              : "2px solid#E0E0E0",
+            color: customStyles?.color ? customStyles?.color : "#13A4CC",
+            opacity: 1,
+            ...customStyles,
+
+            "&:hover": {
+              backgroundColor: hoverStyles?.backgroundColor
+                ? hoverStyles.backgroundColor
+                : "#0D7491",
+              border: hoverStyles?.border
+                ? hoverStyles.border
+                : " 1px solid  rgba(0, 0, 0, 0.50)",
+                cursor:"default",
+              ...hoverStyles,
+            },
+
+            "&:focus": {
+              border: focusStyles?.border
+                ? focusStyles.border
+                : "3px solid #333;",
+              backgroundColor: focusStyles?.backgroundColor
+                ? focusStyles.backgroundColor
+                : "#13A4CC",
+              color: focusStyles?.color ? focusStyles.color : "#FFFFFF",
+              ...focusStyles,
+            },
+          }}
           startIcon={
             startIcon ? (
               <Image
                 alt={`${id}-startIcon`}
                 src={startIcon}
-                width={20}
-                height={20}
+                style={{ width: "20px", height: "20px", ...iconStyles }}
               />
             ) : (
               ""
@@ -74,8 +106,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
               <Image
                 alt={`${id}-endIcon`}
                 src={endIcon}
-                width={20}
-                height={20}
+                style={{ width: "20px", height: "20px", ...iconStyles }}
               />
             ) : (
               ""
@@ -87,8 +118,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           {btnText}
         </Button>
       </Tooltip>
-    </>
+    </div>
   );
 };
- 
+
 export default CustomButton;

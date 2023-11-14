@@ -107,10 +107,11 @@ export default function Home() {
 
   const customButtonStyles2: React.CSSProperties = {
     border: "2px solid #13A4CC",
-    // width: "200px",
-    height: "30px",
+    width: "100px",
+    height: "40px",
     color: "#FFF",
     backgroundColor: "#13A4CC",
+    fontFamily:poppins.style.fontFamily
   };
 
   const customButtonStyles4: React.CSSProperties = {
@@ -154,122 +155,117 @@ export default function Home() {
   }, [input]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      <Suspense fallback={<p>Loading Login...</p>}>{/* <Login /> */}</Suspense>
-
-      <div
-        style={{
-          height: "60px",
-          textAlign: "center",
-          padding: "10px",
-          backgroundColor: "#73f3f3c8",
-          display: "flex",
-          gap: "15px",
+    <div
+      style={{
+        height: "100vh",
+        textAlign: "start",
+        padding: "10px",
+        backgroundColor: "white",
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+      }}
+    >
+      <CustomSearchField2
+        icon={searchIcon}
+        OnChange={(e) => {
+          setInput(e);
+          console.log("cs", e);
         }}
-      >
-        <CustomSearchField2
-          icon={searchIcon}
-          OnChange={(e) => {
-            setInput(e);
-            console.log("cs", e);
-          }}
-          id="search"
-          placeHolder="Search RFQ#"
-          isAvailable={true}
-          customStyles={{ height: "30px", width: "160px" }}
-          iconStyles={{ width: "24px", height: "24px" }}
-        />
-        <CustomSearchField2
-          icon={searchIcon}
-          OnChange={(e) => {
-            setInput(e);
-            console.log("cs", e);
-          }}
-          id="search"
-          placeHolder="Search RFQ#"
-          isAvailable={true}
-          customStyles={{ height: "30px", width: "160px" }}
-          iconStyles={{ width: "24px", height: "24px" }}
-        />
-        <CustomSearchField2
-          icon={searchIcon}
-          OnChange={(e) => {
-            setInput(e);
-            console.log("cs", e);
-          }}
-          id="search"
-          placeHolder="Search RFQ#"
-          isAvailable={true}
-          customStyles={{ height: "30px", width: "160px" }}
-          iconStyles={{ width: "24px", height: "24px" }}
-        />
-        <CustomSearchField2
-          icon={searchIcon}
-          OnChange={(e) => {
-            setInput(e);
-            console.log("cs", e);
-          }}
-          id="search"
-          placeHolder="Search RFQ#"
-          isAvailable={true}
-          customStyles={{ height: "30px", width: "160px" }}
-          iconStyles={{ width: "24px", height: "24px" }}
-        />
-        <CustomSearchField2
-          icon={searchIcon}
-          OnChange={(e) => {
-            setInput(e);
-            console.log("cs", e);
-          }}
-          id="search"
-          placeHolder="Search RFQ#"
-          isAvailable={true}
-          customStyles={{ height: "30px", width: "160px" }}
-          iconStyles={{ width: "24px", height: "24px" }}
-        />
-      </div>
+        id="search"
+        placeHolder="Search RFQ#"
+        isAvailable={true}
+        customStyles={{
+          height: "30px",
+          width: "160px",
+          color: "green",
+          borderRadius: "6px",
+        }}
+        iconStyles={{ width: "25px", height: "25px" }}
+      />
 
-      <table>
-        <tbody>
-          {rfqd.map((item: any, i: number) => {
-            return (
-              <tr key={i}>
-                <td>{i + 1}</td>
-                <td>{item.clientname}</td>
-                <td>{item.RFQNO}</td>
-                <td>{item.Vesselname}</td>
-                <td>{item.description}</td>
-                <td>{item.itemdate}</td>
-                <td>{item.supplyport}</td>
-                <td>{item.supplydate}</td>
-                <td>{item.status}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <CustomTextField
+        OnChange={() => {}}
+        id="txt"
+        name="comments"
+        placeHolder="QT-1234"
+        type="text"
+        isAvailable={true}
+        customStyles={{
+          width: "160px",
+          height: "30px",
+          color: "red",
+        }}
+      />
+      <CustomTextArea
+        showTextCount={true}
+        lineCount={2}
+        isAvailable={true}
+        OnChange={(value) => {
+          console.log(value);
+          settext(value);
+        }}
+        id="comments"
+        placeHolder="Comments"
+        maxLimit={250}
+        customStyles={{
+          borderRadius: "6px",
+        }}
+      />
 
-      <div style={{ backgroundColor: "#a8ababaf", padding: "10px" }}>
-        <CustomSearchField2
-          customStyles={{
-            padding: "10px 0px 10px 2px",
-            backgroundColor: "#FFF",
-            color: "#808080",
-            fontSize: "16px",
-            border: "none",
-            width: "200px",
-            fontFamily: poppins.style.fontFamily,
-          }}
-          icon={searchIcon}
-          OnChange={(value) => {
-            console.log("value search 2", value);
-          }}
-          id="search"
-          placeHolder="Search RFQ#"
-          isAvailable={true}
-          iconStyles={{ width: "30px", height: "30px" }}
-        />
-      </div>
+      <CustomButton
+        btnText="Submit"
+        id="Decline"
+        isAvailable={true}
+        OnClick={() => {}}
+        variant="outlined"
+        startIcon={submitIcon}
+        endIcon={""}
+        customStyles={customButtonStyles2}
+        iconStyles={{
+          width: "25px",
+          height: "25px",
+        }}
+        hoverStyles={{
+          border: "1px solid var(#00000080, rgba(0, 0, 0, 0.50))",
+
+          backgroundColor: "#0D7491",
+        }}
+      />
+      <CustomButton
+        btnText="Cancel"
+        id="cancel-btn"
+        isAvailable={false}
+        OnClick={() => {}}
+        variant="outlined"
+        customStyles={{
+          border: "2px solid #808080",
+          color: "#808080",
+          width: "130px",
+          fontFamily: poppins.style.fontFamily,
+        }}
+      />
+      <CustomButton
+        btnText="Decline"
+        id="Decline"
+        isAvailable={true}
+        OnClick={() => {}}
+        variant="outlined"
+        startIcon={declineIcon}
+        customStyles={{
+          border: "2px solid #13A4CC",
+          color: "#13A4CC",
+          backgroundColor: "#E0E0E0",
+          width: "130px",
+          fontFamily: poppins.style.fontFamily,
+        }}
+      />
+      <CustomIcon
+        OnClick={() => {}}
+        icon={chatIcon}
+        id="close-icon"
+        isAvailable={true}
+      />
 
       <button
         onClick={() => {
@@ -384,6 +380,49 @@ export default function Home() {
           </div>
         </div>
       </CustomModal>
+      {/* <table>
+        <tbody>
+          {rfqd.map((item: any, i: number) => {
+            return (
+              <tr key={i}>
+                <td>{i + 1}</td>
+                <td>{item.clientname}</td>
+                <td>{item.RFQNO}</td>
+                <td>{item.Vesselname}</td>
+                <td>{item.description}</td>
+                <td>{item.itemdate}</td>
+                <td>{item.supplyport}</td>
+                <td>{item.supplydate}</td>
+                <td>{item.status}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <div style={{ backgroundColor: "#a8ababaf", padding: "10px" }}>
+        <CustomSearchField2
+          customStyles={{
+            padding: "10px 0px 10px 2px",
+            backgroundColor: "#FFF",
+            color: "#808080",
+            fontSize: "16px",
+            border: "none",
+            width: "200px",
+            fontFamily: poppins.style.fontFamily,
+          }}
+          icon={searchIcon}
+          OnChange={(value) => {
+            console.log("value search 2", value);
+          }}
+          id="search"
+          placeHolder="Search RFQ#"
+          isAvailable={true}
+          iconStyles={{ width: "30px", height: "30px" }}
+        />
+      </div>
+
+      
       <CustomButton
         btnText="Cancel"
         id="cancel-btn"
@@ -524,7 +563,7 @@ export default function Home() {
         fillColor="blue"
         isAvailable={true}
         label="Agree to terms and conditions"
-      />
+      /> */}
     </div>
   );
 }

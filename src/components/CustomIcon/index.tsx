@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
 import Image from "next/image";
 
@@ -9,6 +9,9 @@ interface CustomIconProps {
   isAvailable: boolean;
   icon: string;
   customStyles?: {
+    [key: string]: any;
+  };
+  iconStyles?: {
     [key: string]: any;
   };
   OnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -20,29 +23,43 @@ const CustomIcon: React.FC<CustomIconProps> = ({
   icon,
   isAvailable,
   customStyles,
+  iconStyles,
 }) => {
-  const Styles: React.CSSProperties = {
-    backgroundColor: customStyles?.backgroundColor
-      ? customStyles.backgroundColor
-      : "#A0DBEB",
-    borderRadius: "4px",
-    height: customStyles?.height ? customStyles.height : "40px",
-    width: customStyles?.width ? customStyles.width : "40px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    border: "none",
-    outline: "none",
-    flexShrink: 0,
-    ...customStyles,
-  };
-
   return (
     <>
       <Tooltip title={isAvailable ? "" : DEV_UNDER_PROCESS} arrow>
-        <button style={Styles} onClick={OnClick}>
-          <Image src={icon} width={22} height={22} alt={`${id}-icon`} />
-        </button>
+        <Button
+          style={{
+            padding: "0",
+            minWidth: "unset",
+            minHeight: "unset",
+            backgroundColor: customStyles?.backgroundColor
+              ? customStyles.backgroundColor
+              : "#A0DBEB",
+            borderRadius: "4px",
+            height: customStyles?.height ? customStyles.height : "30px",
+            width: customStyles?.width ? customStyles.width : "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "none",
+            outline: "none",
+            flexShrink: 0,
+            ...customStyles,
+          }}
+          onClick={OnClick}
+          
+        >
+          <Image
+            src={icon}
+            style={{
+              width: iconStyles?.width ? iconStyles.width : "20px",
+              height: iconStyles?.height ? iconStyles.height : "20px",
+              ...iconStyles,
+            }}
+            alt={`${id}-icon`}
+          />
+        </Button>
       </Tooltip>
     </>
   );

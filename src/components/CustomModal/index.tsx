@@ -3,7 +3,7 @@ import { Modal } from "@mui/material";
 import React from "react";
 
 interface ModalProps {
-  isBackgroundGray:boolean,
+  isBackgroundGray: boolean;
   customStyles?: {
     [key: string]: any;
   };
@@ -19,7 +19,7 @@ const CustomModal: React.FC<ModalProps> = ({
   children,
   customStyles,
   onclose,
-  isBackgroundGray=false
+  isBackgroundGray = true,
 }) => {
   const Styles: React.CSSProperties = {
     position: customStyles?.position ? customStyles.position : "absolute",
@@ -29,7 +29,7 @@ const CustomModal: React.FC<ModalProps> = ({
     backgroundColor: customStyles?.backgroundColor
       ? customStyles?.backgroundColor
       : "#FFF",
-    border: "none",
+    border: customStyles?.border ? customStyles.border : "1px solid black",
     borderRadius: customStyles?.borderRadius
       ? customStyles?.borderRadius
       : "10px",
@@ -41,7 +41,17 @@ const CustomModal: React.FC<ModalProps> = ({
 
   return (
     <>
-      <Modal  open={open} onClose={onclose}>
+      <Modal
+        open={open}
+        onClose={onclose}
+        BackdropProps={{
+          style: {
+            backgroundColor: isBackgroundGray
+              ? "background.paper'"
+              : "transparent",
+          },
+        }}
+      >
         <div style={Styles} id={id}>
           {children}
         </div>
