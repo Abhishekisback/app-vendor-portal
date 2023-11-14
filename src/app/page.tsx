@@ -196,7 +196,7 @@ export default function Home() {
         customStyles={{
           width: "160px",
           height: "30px",
-          color: "red",
+          color: "#808080",
         }}
     
       />
