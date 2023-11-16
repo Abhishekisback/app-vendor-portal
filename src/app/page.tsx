@@ -26,6 +26,8 @@ import Chart from "@/components/ChartComponent";
 
 import CustomSearchField2 from "@/components/Customsearch2";
 import RFQData from "../components/samples.json";
+//import MultiSelectDropdown from "@/components/MultiSelectDropDown";
+import IframeWrapper from "@/components/PDFViewer";
 
 interface searchAbleTags {
   label: string;
@@ -85,6 +87,7 @@ export default function Home() {
   };
 
   const [showModal, setModal] = useState(false);
+
   const customTextFieldStyles: React.CSSProperties = {
     width: "180px",
     height: "30px",
@@ -153,6 +156,26 @@ export default function Home() {
       setrfqd(RFQData);
     }
   }, [input]);
+  type OptionType = {
+    value: number;
+    label: string;
+  };
+
+  const options: OptionType[] = [];
+  for (let i = 0; i < 50; ++i) {
+    options.push({
+      value: i + 1,
+      label: `Ennore ${i + 1}`,
+    });
+  }
+  const definedWidth = "170px";
+  const textLabel = "PR Type";
+
+  const [dropDownSelectedItems, setDropDownSelectedItems] = useState<string[]>(
+    []
+  );
+
+  const searchable = true;
 
   return (
     <div
@@ -160,12 +183,14 @@ export default function Home() {
         height: "100vh",
         textAlign: "start",
         padding: "10px",
-        backgroundColor: "white",
+        backgroundColor: "",
         display: "flex",
         flexDirection: "column",
         gap: "20px",
       }}
     >
+      
+
       <CustomSearchField2
         icon={searchIcon}
         OnChange={(e) => {
@@ -178,8 +203,9 @@ export default function Home() {
         customStyles={{
           height: "30px",
           width: "160px",
-          color: "#808080",
+          color: "green",
           borderRadius: "6px",
+          fontFamily: poppins.style.fontFamily,
         }}
         iconStyles={{ width: "25px", height: "25px" }}
       />
@@ -196,9 +222,9 @@ export default function Home() {
         customStyles={{
           width: "160px",
           height: "30px",
-          color: "#808080",
+          color: "red",
+          fontFamily: poppins.style.fontFamily,
         }}
-    
       />
       <CustomTextArea
         showTextCount={true}
@@ -208,11 +234,12 @@ export default function Home() {
           console.log(value);
           settext(value);
         }}
-        id="comments"
+        id="comments please"
         placeHolder="Comments"
         maxLimit={250}
         customStyles={{
           borderRadius: "6px",
+          fontFamily: poppins.style.fontFamily,
         }}
       />
 
@@ -224,7 +251,14 @@ export default function Home() {
         variant="outlined"
         startIcon={submitIcon}
         endIcon={""}
-        customStyles={customButtonStyles2}
+        customStyles={{
+          border: "2px solid #13A4CC",
+          color: "#FFF",
+          backgroundColor: "#13A4CC",
+          width: "120px",
+          fontFamily: poppins.style.fontFamily,
+          fontSize: "19px",
+        }}
         iconStyles={{
           width: "25px",
           height: "25px",
@@ -258,9 +292,27 @@ export default function Home() {
         customStyles={{
           border: "2px solid #13A4CC",
           color: "#13A4CC",
+          // backgroundColor: "#E0E0E0",
+          width: "130px",
+          fontFamily: poppins.style.fontFamily,
+        }}
+      />
+      <CustomButton
+        btnText="Submit"
+        id="Decline"
+        isAvailable={true}
+        OnClick={() => {}}
+        variant="outlined"
+        startIcon={submitIcon}
+        customStyles={{
+          border: "2px solid #13A4CC",
+          color: "#13A4CC",
           backgroundColor: "#E0E0E0",
           width: "130px",
           fontFamily: poppins.style.fontFamily,
+        }}
+        hoverStyles={{
+          border: "2px solid red",
         }}
       />
       <CustomIcon
@@ -278,19 +330,22 @@ export default function Home() {
       >
         open pdf
       </button>
-      {showmodal && (
-        <PDFViewer
-          customStyles={{
-            width: "100%",
-            height: "100%",
-            top: "50px",
-          }}
-          id="purchase orders"
-          pdfUrl="https://crm-fe-omega.vercel.app/admin"
-          iframeStyles={{}}
-        />
-      )}
-
+       {showmodal && (
+        <IframeWrapper
+        customStyles={{
+          width: "100%",
+          minHeight:"100vh",
+          top: "50px",
+        }}
+        id="purchase orders"
+        url="https://www.africau.edu/images/default/sample.pdf"
+        iframeStyles={{
+          width: "100vw",
+          minHeight: "100vh",
+        }}
+      />
+      )} 
+     
       <button
         style={{ width: "200px" }}
         onClick={() => {
@@ -301,7 +356,7 @@ export default function Home() {
       </button>
 
       <CustomModal
-        isBackgroundGray={false}
+        isBackgroundGray={true}
         onclose={() => {
           setModal(false);
         }}
@@ -310,79 +365,99 @@ export default function Home() {
         customStyles={{
           width: "460px",
           height: "460px",
-          backgroundColor: "#FFF",
+          backgroundColor: "#eb8484",
           padding: "20px",
         }}
       >
         <CustomIcon
+          icon={CloseIcon}
           OnClick={() => {
             setModal(false);
           }}
-          icon={CloseIcon}
-          id="close-icon"
           isAvailable={true}
-          customStyles={{ backgroundColor: "#FFF", marginLeft: "90%" }}
-        />
-
-        <CustomTextField
-          OnChange={() => {}}
-          id="txt"
-          name="comments"
-          placeHolder="UserName"
-          type="text"
+          id="mod"
           customStyles={{}}
-          isAvailable={true}
+          iconStyles={{}}
         />
+        <br />
+        <CustomTextArea
+          showTextCount={true}
+          lineCount={2}
+          isAvailable={true}
+          OnChange={(value) => {
+            console.log(value);
+            settext(value);
+          }}
+          id="comments"
+          placeHolder="Comments"
+          maxLimit={250}
+          customStyles={{
+            borderRadius: "6px",
+          }}
+        />
+        <br />
 
-        <p style={{ fontSize: "14px", marginLeft: "25%" }}>
-          Please Add Comments for PO line
-        </p>
-        <div style={{ marginTop: "15%" }}>
-          <p style={{ fontSize: "12px", marginLeft: "16%" }}>
-            Comments <span style={{ fontSize: "12px" }}>(max 250 chars)</span>{" "}
-          </p>
+        <p>Please add your comments here</p>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "20px",
-              width: "100%",
-              justifyContent: "center",
-              textAlign: "center",
-              marginTop: "50px",
-            }}
-          >
-            <CustomButton
-              btnText="Cancel"
-              id="cancel-btn"
-              isAvailable={false}
-              OnClick={() => {}}
-              variant="outlined"
-              customStyles={{
-                border: "2px solid #808080",
-                color: "#808080",
-                width: "130px",
-                fontFamily: poppins.style.fontFamily,
-              }}
-            />
-            <CustomButton
-              btnText="Decline"
-              id="Decline"
-              isAvailable={true}
-              OnClick={() => {}}
-              variant="outlined"
-              customStyles={{
-                border: "1px solid #D74949",
-                color: "#FFF",
-                backgroundColor: "#D74949",
-                width: "130px",
-                fontFamily: poppins.style.fontFamily,
-              }}
-            />
-          </div>
+        <div style={{ display: "flex", gap: "20px" }}>
+          <CustomButton
+            OnClick={() => {}}
+            btnText="Decline"
+            id="dec"
+            isAvailable={true}
+            variant="outlined"
+            customStyles={{}}
+            startIcon={excelIcon}
+            endIcon=""
+            focusStyles={{}}
+            hoverStyles={{}}
+            iconStyles={{}}
+          />
+          <CustomButton
+            OnClick={() => {}}
+            btnText="Accept"
+            id="dec"
+            isAvailable={true}
+            variant="outlined"
+            customStyles={{}}
+            startIcon={excelIcon}
+            endIcon=""
+            focusStyles={{}}
+            hoverStyles={{}}
+            iconStyles={{}}
+          />
         </div>
       </CustomModal>
+
+      <Checkboxes
+        name=""
+        borderColor="#808080"
+        OnChange={(value) => {
+          console.log(value);
+        }}
+        labelStyles={{ color: "#808080", fontFamily: poppins.style.fontFamily }}
+        size="25px"
+        fillColor="blue"
+        isAvailable={true}
+        label="Agree to terms and conditions"
+      />
+
+      <CustomRadioButtons
+        id="radio-grp"
+        size="25px"
+        borderColor=""
+        fillColor=""
+        isAvailable={true}
+        name="Select one"
+        OnChange={(value) => {}}
+        optionList={radioList}
+        radioBtnGrpName="Select cvgevdgedgevdgvgender "
+        labelStyles={{
+          fontSize: "18px",
+          fontFamily: poppins.style.fontFamily,
+          margin: "0px",
+        }}
+      />
       {/* <table>
         <tbody>
           {rfqd.map((item: any, i: number) => {

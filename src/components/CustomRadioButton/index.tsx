@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import Tooltip from "@mui/material/Tooltip";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
-
+import { Typography } from "@mui/material";
 
 interface RadioButtonProps {
   id: string;
@@ -13,7 +13,7 @@ interface RadioButtonProps {
   borderColor?: string;
   fillColor?: string;
   size?: string;
-  radioBtnGrpName: string;
+  radioBtnGrpName?: string;
   optionList: List[];
   name: string;
   OnChange: (value: string) => void;
@@ -21,7 +21,7 @@ interface RadioButtonProps {
 }
 
 interface labels {
-  [key: string]: any;
+  [key: string]: string;
 }
 
 interface List {
@@ -50,14 +50,15 @@ const CustomRadioButtons: React.FC<RadioButtonProps> = ({
 
   return (
     <div id={id} style={{ width: "fit-content" }}>
-      <span>{radioBtnGrpName}</span>
+      <span style={{ fontFamily: labelStyles?.fontFamily, opacity: 1 }}>
+        {radioBtnGrpName}
+      </span>
       <Tooltip title={isAvailable ? "" : DEV_UNDER_PROCESS}>
         <RadioGroup id={id} aria-label={`${id}-radio`} name={name}>
           {optionList.map((ele, i) => {
             return (
               <React.Fragment key={i}>
                 <FormControlLabel
-                  style={labelStyles}
                   disabled={!isAvailable}
                   key={i}
                   value={ele.value}
@@ -74,15 +75,25 @@ const CustomRadioButtons: React.FC<RadioButtonProps> = ({
                       }}
                       checked={selectedValue === ele.value}
                       onChange={handleChange}
-                      onKeyDown={(e) => {
+                      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
                         if (e.key === "Enter") {
                           setSelectedValue(ele.value);
-                          OnChange(ele.value)
+                          OnChange(ele.value);
                         }
                       }}
                     />
                   }
-                  label={ele.label}
+                  label={
+                    <p
+                      style={{
+                        opacity: 1,
+                        fontFamily: labelStyles?.fontFamily,
+                                              ...labelStyles,
+                      }}
+                    >
+                      {ele.label}
+                    </p>
+                  }
                 />
               </React.Fragment>
             );

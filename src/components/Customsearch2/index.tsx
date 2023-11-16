@@ -10,25 +10,25 @@ interface customSearchFieldProps {
   iconStyles: {
     width: string;
     height: string;
-    [key: string]: any;
+    [key: string]: string;
   };
   isAvailable?: boolean;
   placeHolder: string;
   customStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   icon: string;
   hoverStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   focusStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   OnChange: (value: string) => void;
 }
 
 const CustomSearchField2: React.FC<customSearchFieldProps> = ({
-  isAvailable = false,
+  isAvailable = true,
   placeHolder,
   OnChange,
   customStyles,
@@ -58,7 +58,7 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
           <TextField
             type="search"
             value={text}
-            onChange={(e) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               settext(e.target.value);
               OnChange(e.target.value);
             }}
@@ -78,6 +78,7 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                 lineHeight: customStyles?.lineHeight
                   ? customStyles.lineHeight
                   : "18px",
+                fontFamily: customStyles?.fontFamily,
               },
 
               "& .MuiInputBase-input": {
@@ -105,7 +106,8 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
                 borderRadius: customStyles?.borderRadius
                   ? customStyles.borderRadius
                   : "4px",
-
+                opacity: 1,
+                fontFamily: customStyles?.fontFamily,
                 ...customStyles,
               },
 

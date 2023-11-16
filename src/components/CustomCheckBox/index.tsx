@@ -12,7 +12,7 @@ interface CheckBoxProps {
   fillColor: string;
   size: string;
   labelStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   OnChange: (value: string) => void;
 }
@@ -28,7 +28,7 @@ const Checkboxes: React.FC<CheckBoxProps> = ({
   name,
 }) => {
   const [selected, setSelected] = useState<boolean>(false);
-  const [value, setValue] = useState<string>("Not Checked");
+  const [, setValue] = useState<string>("Not Checked");
 
   const handleClick = () => {
     setSelected(!selected);
@@ -51,12 +51,9 @@ const Checkboxes: React.FC<CheckBoxProps> = ({
         <div style={styles}>
           <label
             style={{
+              opacity: 1,
+              fontFamily: labelStyles?.fontFamily,
               ...labelStyles,
-
-              fontSize: "10px",
-              fontWeight: "500",
-              fontStyle: "normal",
-              lineHeight: "normal",
             }}
           >
             <Checkbox
@@ -68,7 +65,7 @@ const Checkboxes: React.FC<CheckBoxProps> = ({
                 "&.Mui-checked": {
                   color: fillColor ? fillColor : "#13A4CC",
                 },
-                "& .MuiSvgIcon-root": { fontSize: size ? size : "18px" },
+                "& .MuiSvgIcon-root": { fontSize: size ? size : "15px" },
               }}
               disabled={isAvailable ? false : true}
             />

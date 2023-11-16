@@ -1,20 +1,20 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
+import { Modal } from "@mui/material";
 
-interface PDFprops {
-  pdfUrl: string;
+interface IframeProps {
+  url: string;
   id: string;
   customStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   iframeStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
 }
 
-const PDFViewer: React.FC<PDFprops> = ({
-  pdfUrl,
+const IframeWrapper: React.FC<IframeProps> = ({
+  url,
   customStyles,
   id,
   iframeStyles,
@@ -30,20 +30,21 @@ const PDFViewer: React.FC<PDFprops> = ({
     height: customStyles?.height ? customStyles.height : "100vh",
     backgroundColor: "rgba(255, 255, 255, 0.9)",
     zIndex: 1,
+
     ...customStyles,
   };
-
+  const isBackgroundGray = false;
   return (
-    <div>
+    <div style={{width:"100%", height:"100%"}}>
       <Box sx={{ ...style, backgroundColor: "transparent" }}>
         <iframe
           id={id}
-          title={`${id}-PDF-Viewer`}
-          src={pdfUrl}
+          title={`${id}-Iframe-Wrapper`}
+          src={url}
           style={{
-            width: iframeStyles?.width ? style.width : "100%",
-            height: iframeStyles?.height ? style.height : "100%",
-            ...iframeStyles
+            // width: iframeStyles?.width ? style.width : "100%",
+            // height: iframeStyles?.height ? style.height : "100%",
+            ...iframeStyles,
           }}
         />
       </Box>
@@ -51,4 +52,4 @@ const PDFViewer: React.FC<PDFprops> = ({
   );
 };
 
-export default PDFViewer;
+export default IframeWrapper;

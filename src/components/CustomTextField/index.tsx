@@ -44,7 +44,7 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
           disabled={isAvailable ? false : true}
           variant="outlined"
           placeholder={placeHolder}
-          onChange={(e) => {
+          onChange={(e:React.ChangeEvent<HTMLInputElement>) => {
             OnChange(e.target.value);
           }}
           sx={{
@@ -61,6 +61,7 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
               lineHeight: customStyles?.lineHeight
                 ? customStyles.lineHeight
                 : "18px",
+              fontFamily: customStyles?.fontFamily,
             },
 
             "& .MuiInputBase-input": {
@@ -88,6 +89,7 @@ const CustomTextField: React.FC<customTextFieldsProps> = ({
               borderRadius: customStyles?.borderRadius
                 ? customStyles.borderRadius
                 : "4px",
+                opacity:1,
               ...customStyles,
             },
 

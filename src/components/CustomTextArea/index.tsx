@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
-import { Typography, TextField, Tooltip, Box } from "@mui/material";
-import { poppins } from "@/app/fonts";
+import {  TextField, Tooltip, Box } from "@mui/material";
 
 interface customTextAreaProps {
   isAvailable?: boolean;
@@ -12,13 +11,19 @@ interface customTextAreaProps {
   maxLimit: number;
   placeHolder: string;
   customStyles?: {
-    [key: string]: any;
+    [key: string]: string;
+  };
+  hoverStyles?: {
+    [key: string]: string;
+  };
+  focusStyles?: {
+    [key: string]: string;
   };
   OnChange: (value: string) => void;
 }
 
 const CustomTextArea: React.FC<customTextAreaProps> = ({
-  isAvailable,
+  isAvailable = true,
   lineCount,
   maxLimit,
   showTextCount = false,
@@ -26,6 +31,8 @@ const CustomTextArea: React.FC<customTextAreaProps> = ({
   OnChange,
   customStyles,
   id,
+  hoverStyles,
+  focusStyles,
 }) => {
   const [comment, setComment] = useState<string>("");
   const maxCharLimit = maxLimit;
@@ -76,12 +83,14 @@ const CustomTextArea: React.FC<customTextAreaProps> = ({
                 lineHeight: customStyles?.lineHeight
                   ? customStyles.lineHeight
                   : "18px",
+                fontFamily: customStyles?.fontFamily,
               },
               "& .MuiInputBase-input": {
                 padding: customStyles?.padding
                   ? customStyles?.padding
                   : "7px 0px 8px 0px",
                 color: customStyles?.color || "#333333",
+                opacity: 1,
                 backgroundColor: "#FFF",
                 fontSize: customStyles?.fontSize
                   ? customStyles?.fontSize
@@ -95,7 +104,7 @@ const CustomTextArea: React.FC<customTextAreaProps> = ({
                 lineHeight: customStyles?.lineHeight
                   ? customStyles?.lineHeight
                   : "normal",
-
+                fontFamily: customStyles?.fontFamily,
                 ...customStyles,
               },
               "& .MuiOutlinedInput-root": {
@@ -108,15 +117,19 @@ const CustomTextArea: React.FC<customTextAreaProps> = ({
                     : "4px",
                 },
                 "&:hover fieldset": {
-                  border: customStyles?.border
-                    ? customStyles.border
+                  border: hoverStyles?.border
+                    ? hoverStyles.border
                     : "2px solid #EDF1F2",
+                  ...hoverStyles,
                 },
                 "&.Mui-focused fieldset": {
-                  border: "3px solid #13A4CC ",
-                  borderRadius: customStyles?.borderRadius
-                    ? customStyles.borderRadius
+                  border: focusStyles?.border
+                    ? focusStyles.border
+                    : "3px solid #13A4CC ",
+                  borderRadius: focusStyles?.borderRadius
+                    ? focusStyles.borderRadius
                     : "4px",
+                  ...focusStyles,
                 },
                 "&.MuiInputBase-input": {
                   flexShrink: 0,
@@ -130,12 +143,15 @@ const CustomTextArea: React.FC<customTextAreaProps> = ({
           />
 
           {showTextCount && (
-            <Typography
-            style={{color:"#808080", fontFamily:poppins.style.fontFamily}}
-              color={comment.length >= maxCharLimit ? "error" : "#808080"}
+            <p
+              style={{
+                color: comment.length >= maxCharLimit ? "red" : "#808080",
+                fontFamily: customStyles?.fontFamily,
+                marginTop: "0px",
+              }}
             >
               {`${comment.length}/${maxCharLimit}`} characters
-            </Typography>
+            </p>
           )}
         </Box>
       </Tooltip>

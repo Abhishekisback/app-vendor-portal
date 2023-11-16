@@ -6,10 +6,10 @@ import { DEV_UNDER_PROCESS } from "../../constants/index";
 
 interface CustomButtonProps {
   hoverStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   focusStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   id: string;
   startIcon?: string;
@@ -18,10 +18,10 @@ interface CustomButtonProps {
   variant: "outlined";
   btnText: string;
   customStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   iconStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   OnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -66,6 +66,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
               : "2px solid#E0E0E0",
             color: customStyles?.color ? customStyles?.color : "#13A4CC",
             opacity: 1,
+            fontFamily: customStyles?.fontFamily,
             ...customStyles,
 
             "&:hover": {
@@ -75,7 +76,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
               border: hoverStyles?.border
                 ? hoverStyles.border
                 : " 1px solid  rgba(0, 0, 0, 0.50)",
-                cursor:"default",
+              cursor: "default",
               ...hoverStyles,
             },
 

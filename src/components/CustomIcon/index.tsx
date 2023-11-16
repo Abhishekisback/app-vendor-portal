@@ -9,10 +9,10 @@ interface CustomIconProps {
   isAvailable: boolean;
   icon: string;
   customStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   iconStyles?: {
-    [key: string]: any;
+    [key: string]: string;
   };
   OnClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -29,7 +29,7 @@ const CustomIcon: React.FC<CustomIconProps> = ({
     <>
       <Tooltip title={isAvailable ? "" : DEV_UNDER_PROCESS} arrow>
         <Button
-          style={{
+          sx={{
             padding: "0",
             minWidth: "unset",
             minHeight: "unset",
@@ -44,11 +44,21 @@ const CustomIcon: React.FC<CustomIconProps> = ({
             alignItems: "center",
             border: "none",
             outline: "none",
+            opacity: 1,
             flexShrink: 0,
             ...customStyles,
+            "&:focus": {
+              // backgroundColor: "#A0DBEB",
+              // border: " 4px solid  #13A4CC",
+              // cursor: "default",
+            },
+            "&:hover": {
+              // backgroundColor: "#A0DBEB",
+              // border: " 2px solid  #13A4CC",
+              // cursor: "default",
+            },
           }}
           onClick={OnClick}
-          
         >
           <Image
             src={icon}
