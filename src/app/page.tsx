@@ -143,20 +143,20 @@ export default function Home() {
   // console.log(text);
   // console.log("search", input);
   console.log(RFQData);
-  useEffect(() => {
-    console.log("CHANGE");
+  // useEffect(() => {
+  //   console.log("CHANGE");
 
-    if (input.length >= 3) {
-      const filteredRFQ = rfqd.filter((filter) => {
-        return filter.RFQNO.includes(input.toString());
-      });
-      console.log(filteredRFQ);
+  //   if (input.length >= 3) {
+  //     const filteredRFQ = rfqd.filter((filter) => {
+  //       return filter.RFQNO.includes(input.toString());
+  //     });
+  //     console.log(filteredRFQ);
 
-      setrfqd(filteredRFQ);
-    } else {
-      setrfqd(RFQData);
-    }
-  }, [input]);
+  //     setrfqd(filteredRFQ);
+  //   } else {
+  //     setrfqd(RFQData);
+  //   }
+  // }, [input]);
   type OptionType = {
     value: number;
     label: string;
@@ -179,21 +179,9 @@ export default function Home() {
   const searchable = true;
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        textAlign: "start",
-        padding: "10px",
-        backgroundColor: "",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-      }}
-    >
-      
-
+    <div>
       <CustomSearchField2
-      closeIcon={CloseIcon}
+        closeIcon={CloseIcon}
         icon={searchIcon}
         OnChange={(e) => {
           setInput(e);
@@ -208,11 +196,11 @@ export default function Home() {
           color: "green",
           borderRadius: "6px",
           fontFamily: poppins.style.fontFamily,
-          border:"1px solid #ADADAD"
+          border: "1px solid #ADADAD",
         }}
         iconStyles={{ width: "25px", height: "25px" }}
       />
-
+      {/* 
       <CustomTextField
         OnChange={(value) => {
           console.log("arun", value);
@@ -461,7 +449,7 @@ export default function Home() {
           fontFamily: poppins.style.fontFamily,
           margin: "0px",
         }}
-      />
+      /> */}
       {/* <table>
         <tbody>
           {rfqd.map((item: any, i: number) => {
