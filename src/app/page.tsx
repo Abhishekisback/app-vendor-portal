@@ -200,6 +200,24 @@ export default function Home() {
         }}
         iconStyles={{ width: "25px", height: "25px" }}
       />
+
+      <div style={{ width: "200px" }}>
+        <CustomTextAreaStyled
+          OnChange={() => {}}
+          id="sty"
+          lineCount={2}
+          maxLimit={333}
+          placeHolder="Comments"
+          customStyles={{
+            width: "100%",
+            fontSize: "12px",
+            fontWeight: "600",
+            fontFamily: poppins.style.fontFamily,
+          }}
+          isAvailable={true}
+          showTextCount={false}
+        />
+      </div>
       {/* 
       <CustomTextField
         OnChange={(value) => {
