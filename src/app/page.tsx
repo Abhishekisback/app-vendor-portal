@@ -218,6 +218,45 @@ export default function Home() {
           showTextCount={false}
         />
       </div>
+      <button
+        style={{ width: "200px" }}
+        onClick={() => {
+          setModal(true);
+        }}
+      >
+        open modal
+      </button>
+
+      <CustomModal
+        isBackgroundGray={true}
+        onclose={() => {
+          setModal(false);
+        }}
+        id="modal-decline"
+        open={showModal}
+        customStyles={{
+          width: "460px",
+          height: "460px",
+          backgroundColor: "#eb8484",
+          padding: "20px",
+        }}
+      >
+        <CustomButton
+          btnText="Decline"
+          id="Decline"
+          isAvailable={true}
+          OnClick={() => {}}
+          variant="outlined"
+          startIcon={declineIcon}
+          customStyles={{
+            border: "2px solid #13A4CC",
+            color: "#13A4CC",
+            // backgroundColor: "#E0E0E0",
+            width: "130px",
+            fontFamily: poppins.style.fontFamily,
+          }}
+        />
+      </CustomModal>
       {/* 
       <CustomTextField
         OnChange={(value) => {
