@@ -75,7 +75,7 @@ const CustomRadioButtons: React.FC<RadioButtonProps> = ({
                       }}
                       checked={selectedValue === ele.value}
                       onChange={handleChange}
-                      onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+                      onKeyDown={(e: any) => {
                         if (e.key === "Enter") {
                           setSelectedValue(ele.value);
                           OnChange(ele.value);
