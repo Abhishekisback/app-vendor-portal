@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { TextField, Box, Tooltip, InputAdornment } from "@mui/material/";
+import { Tooltip, InputBase, Paper } from "@mui/material/";
 import Image from "next/image";
 import "./styles.css";
 import { DEV_UNDER_PROCESS } from "../../constants/index";
 
 interface customSearchFieldProps {
   id: string;
-  iconStyles: {
+  iconStyles?: {
     width: string;
     height: string;
     [key: string]: string;
@@ -18,12 +18,7 @@ interface customSearchFieldProps {
     [key: string]: string;
   };
   icon: string;
-  hoverStyles?: {
-    [key: string]: string;
-  };
-  focusStyles?: {
-    [key: string]: string;
-  };
+  closeIcon: string;
   OnChange: (value: string) => void;
 }
 
@@ -35,132 +30,111 @@ const CustomSearchField2: React.FC<customSearchFieldProps> = ({
   id,
   iconStyles,
   icon,
-  focusStyles,
-  hoverStyles,
+  closeIcon,
 }) => {
-  const [text, settext] = useState("");
+  const [text, setText] = useState("");
 
   return (
     <>
       <Tooltip arrow title={isAvailable ? "" : DEV_UNDER_PROCESS}>
-        <Box
+        <Paper
+          id={id}
           sx={{
+            ml: 0,
+            flex: 1,
+            ":hover": {
+              backgroundColor: "#EDF1F2",
+              border: "1px solid #384C4C",
+              color: "#384C4C",
+              opacity: 1,
+            },
+            ":focus-within": {
+              border: "1px solid #13A4CC",
+              backgroundColor: "#FFFFFF",
+            },
             backgroundColor: customStyles?.backgroundColor
               ? customStyles.backgroundColor
               : "#FFF",
-            width: "fit-content",
-            borderRadius: customStyles?.borderRadius
-              ? customStyles.borderRadius
-              : "6px",
-            height: "fit-content",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: customStyles?.boxShadow
+              ? customStyles.boxShadow
+              : "none",
+            width: customStyles?.width ? customStyles.width : "100%",
+            height: customStyles?.height ? customStyles.height : "30px",
+            padding: "6px 0px 9px 6px",
+            border: customStyles?.border
+              ? customStyles.border
+              : "1px solid transparent",
+            fontFamily: customStyles?.fontFamily,
+            color: "#808080",
+            "& input::placeholder": {
+              color: "#808080",
+              opacity: 1,
+              fontSize: "12px",
+              width: "90%",
+            },
+            borderRadius: "5px",
           }}
         >
-          <TextField
-            type="search"
+          <Image
+            style={{
+              width: iconStyles?.width ? iconStyles?.width : "20px",
+              height: iconStyles?.height ? iconStyles?.height : "20px",
+              ...iconStyles,
+            }}
+            src={icon}
+            alt={`${id}-search`}
+          />
+          <InputBase
+            type="text"
             value={text}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              settext(e.target.value);
+              setText(e.target.value);
               OnChange(e.target.value);
+            }}
+            sx={{
+              padding: "15px 0px 10px 4px",
+              color: customStyles?.color ? customStyles.color : "#808080",
+              fontFamily: customStyles?.fontFamily,
+              fontSize: customStyles?.fontSize
+                ? customStyles?.fontSize
+                : "12px",
+              height: "inherit",
+              width: customStyles?.width ? customStyles.width : "100%",
+              "& input::placeholder": {
+                color: "#808080",
+                opacity: 1,
+                fontSize: customStyles?.fontSize
+                  ? customStyles?.fontSize
+                  : "12px",
+                width: "81%",
+              },
             }}
             placeholder={placeHolder}
             id={id}
-            sx={{
-              width: customStyles?.width ? customStyles.width : "160px",
-              "& input::placeholder": {
-                fontSize: customStyles?.fontSize
-                  ? customStyles?.fontSize
-                  : "12px",
-                fontWeight: 400,
-                fontStyle: "normal",
-                color: "#808080",
-                opacity: 1,
-                width: "fit-content",
-                lineHeight: customStyles?.lineHeight
-                  ? customStyles.lineHeight
-                  : "18px",
-                fontFamily: customStyles?.fontFamily,
-              },
-
-              "& .MuiInputBase-input": {
-                padding: customStyles?.padding
-                  ? customStyles?.padding
-                  : "6px 10px 9px 0px;",
-                width: customStyles?.width || "160px",
-                height: customStyles?.height || "35px",
-                color: customStyles?.color || "#333333",
-                backgroundColor: customStyles?.backgroundColor
-                  ? customStyles.backgroundColor
-                  : "#FFF",
-                fontSize: customStyles?.fontSize
-                  ? customStyles?.fontSize
-                  : "12px",
-                fontStyle: customStyles?.fontStyle
-                  ? customStyles?.fontStyle
-                  : "normal",
-                fontWeight: customStyles?.fontWeight
-                  ? customStyles?.fontWeight
-                  : "400",
-                lineHeight: customStyles?.lineHeight
-                  ? customStyles?.lineHeight
-                  : "normal",
-                borderRadius: customStyles?.borderRadius
-                  ? customStyles.borderRadius
-                  : "4px",
-                opacity: 1,
-                fontFamily: customStyles?.fontFamily,
-                ...customStyles,
-              },
-
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  border: customStyles?.border
-                    ? customStyles.border
-                    : "2px solid #CDCDCD",
-                  borderRadius: customStyles?.borderRadius
-                    ? customStyles.borderRadius
-                    : "4px",
-                },
-                "&:hover fieldset": {
-                  border: hoverStyles?.border
-                    ? hoverStyles.border
-                    : "2px solid #EDF1F2",
-                  ...hoverStyles,
-                },
-                "&.Mui-focused fieldset": {
-                  border: focusStyles?.border
-                    ? focusStyles.border
-                    : "3px solid #13A4CC ",
-                  borderRadius: focusStyles?.borderRadius
-                    ? focusStyles.borderRadius
-                    : "4px",
-                  ...focusStyles,
-                },
-                "&.MuiInputBase-input": {
-                  flexShrink: 0,
-                },
-              },
-            }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  {icon && (
-                    <Image
-                      src={icon}
-                      style={{
-                        width: iconStyles?.width ? iconStyles.width : "20px",
-                        height: iconStyles?.height ? iconStyles.height : "20px",
-                        paddingTop: "2px",
-                        paddingBottom: "6px",
-                        paddingRight: "2px",
-                      }}
-                      alt={`${id}-startIcon`}
-                    />
-                  )}
-                </InputAdornment>
-              ),
-            }}
           />
-        </Box>
+          {text.length > 0 ? (
+            <Image
+              onClick={() => {
+                setText("");
+                OnChange("");
+              }}
+              src={closeIcon}
+              alt={`${id}-search`}
+              width={20}
+              height={20}
+              style={{
+                cursor: "pointer",
+                marginRight: "5%",
+                transform: "translateY(10%)",
+              }}
+            />
+          ) : (
+            ""
+          )}
+        </Paper>
       </Tooltip>
     </>
   );

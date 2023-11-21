@@ -28,6 +28,7 @@ import CustomSearchField2 from "@/components/Customsearch2";
 import RFQData from "../components/samples.json";
 //import MultiSelectDropdown from "@/components/MultiSelectDropDown";
 import IframeWrapper from "@/components/PDFViewer";
+import CustomTextAreaStyled from "@/components/StyledComment/page2";
 
 interface searchAbleTags {
   label: string;
@@ -192,6 +193,7 @@ export default function Home() {
       
 
       <CustomSearchField2
+      closeIcon={CloseIcon}
         icon={searchIcon}
         OnChange={(e) => {
           setInput(e);
@@ -206,6 +208,7 @@ export default function Home() {
           color: "green",
           borderRadius: "6px",
           fontFamily: poppins.style.fontFamily,
+          border:"1px solid #ADADAD"
         }}
         iconStyles={{ width: "25px", height: "25px" }}
       />
@@ -226,22 +229,23 @@ export default function Home() {
           fontFamily: poppins.style.fontFamily,
         }}
       />
-      <CustomTextArea
-        showTextCount={true}
+      <div style={{width:"200px"}}>
+      <CustomTextAreaStyled
+        OnChange={() => {}}
+        id="sty"
         lineCount={2}
-        isAvailable={true}
-        OnChange={(value) => {
-          console.log(value);
-          settext(value);
-        }}
-        id="comments please"
+        maxLimit={333}
         placeHolder="Comments"
-        maxLimit={250}
         customStyles={{
-          borderRadius: "6px",
+          width:"100%",
+          fontSize:"12px",
+          fontWeight:"600",
           fontFamily: poppins.style.fontFamily,
         }}
+        isAvailable={true}
+        showTextCount={false}
       />
+      </div>
 
       <CustomButton
         btnText="Submit"
