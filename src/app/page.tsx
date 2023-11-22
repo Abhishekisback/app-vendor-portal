@@ -201,7 +201,7 @@ export default function Home() {
         }}
         iconStyles={{ width: "25px", height: "25px" }}
       />
-
+<br /><br />
       <div style={{ width: "200px" }}>
         <CustomTextAreaStyled
           OnChange={() => {}}
@@ -219,6 +219,8 @@ export default function Home() {
           showTextCount={false}
         />
       </div>
+      <br />
+      <br />
       <CustomTextFieldStyled
         id="1"
         OnChange={() => {}}
@@ -233,23 +235,9 @@ export default function Home() {
           backgroundColor: "#FFF",
         }}
       ></CustomTextFieldStyled>
-      <div style={{ width: "200px" }}>
-        <CustomTextAreaStyled
-          OnChange={() => {}}
-          id="sty"
-          lineCount={2}
-          maxLimit={333}
-          placeHolder="Comments"
-          customStyles={{
-            width: "100%",
-            fontSize: "12px",
-            fontWeight: "600",
-            fontFamily: poppins.style.fontFamily,
-          }}
-          isAvailable={true}
-          showTextCount={false}
-        />
-      </div>
+      <br />
+      <br />
+      
 
       {/* <button
         style={{ width: "200px" }}
