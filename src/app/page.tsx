@@ -29,6 +29,7 @@ import RFQData from "../components/samples.json";
 //import MultiSelectDropdown from "@/components/MultiSelectDropDown";
 import IframeWrapper from "@/components/PDFViewer";
 import CustomTextAreaStyled from "@/components/StyledComment/page2";
+import CustomTextFieldStyled from "@/components/styledfield";
 
 interface searchAbleTags {
   label: string;
@@ -218,7 +219,39 @@ export default function Home() {
           showTextCount={false}
         />
       </div>
-      <button
+      <CustomTextFieldStyled
+        id="1"
+        OnChange={() => {}}
+        placeHolder="QT-1234"
+        type="text"
+        customStyles={{
+          width: "140px",
+          height: "40px",
+        }}
+        isAvailable={true}
+        focusStyles={{
+          backgroundColor: "#FFF",
+        }}
+      ></CustomTextFieldStyled>
+      <div style={{ width: "200px" }}>
+        <CustomTextAreaStyled
+          OnChange={() => {}}
+          id="sty"
+          lineCount={2}
+          maxLimit={333}
+          placeHolder="Comments"
+          customStyles={{
+            width: "100%",
+            fontSize: "12px",
+            fontWeight: "600",
+            fontFamily: poppins.style.fontFamily,
+          }}
+          isAvailable={true}
+          showTextCount={false}
+        />
+      </div>
+
+      {/* <button
         style={{ width: "200px" }}
         onClick={() => {
           setModal(true);
@@ -234,11 +267,13 @@ export default function Home() {
         }}
         id="modal-decline"
         open={showModal}
+        
         customStyles={{
           width: "460px",
           height: "460px",
-          backgroundColor: "#eb8484",
+          backgroundColor: "#FFF",
           padding: "20px",
+          
         }}
       >
         <CustomButton
@@ -256,7 +291,7 @@ export default function Home() {
             fontFamily: poppins.style.fontFamily,
           }}
         />
-      </CustomModal>
+      </CustomModal> */}
       {/* 
       <CustomTextField
         OnChange={(value) => {
