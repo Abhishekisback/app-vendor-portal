@@ -6,25 +6,35 @@ interface StyledTextAreaProps {
   customStyles?: {
     [key: string]: string;
   };
+  hoverStyles?: {
+    [key: string]: string;
+  };
+  focusStyles?: {
+    [key: string]: string;
+  };
 }
 
-
-
 const StyledTextAreaWrapper = styled.div<StyledTextAreaProps>`
- 
-  width: ${(props) => props.customStyles?.width ? props.customStyles.width : "100%"};
+  width: ${(props) =>
+    props.customStyles?.width ? props.customStyles.width : "100%"};
   height: ${(props) => props.customStyles?.height || "65px"};
   border-radius: 5px;
-  border: 2px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid #adadad;
   background: #fff;
-  padding: 1.5px;
+  padding: 1px;
   &:hover {
-    border-radius: 5px;
-    border: 2px solid #EDF1F2;
-    background: #fff;
+    border-radius: ${(props) => props.hoverStyles?.borderRadius || "5px"};
+    border: ${(props) => props.hoverStyles?.border || "2px solid #ADADAD"};
+    background-color: ${(props) =>
+      props.hoverStyles?.backgroundColor || "#edf1f2"};
+    box-shadow: ${(props) =>
+      props.hoverStyles?.boxShadow || "0px 2px 8px 0px rgba(65, 65, 65, 0.16)"};
   }
-  &:focus-within{
-    border: 2px solid #0D7491
+  &:focus-within {
+    border: ${(props) => props.focusStyles?.border || "2px solid #0d7491"};
+    background-color: ${(props) =>
+      props.focusStyles?.backgroundColor || "#FFF"};
+    color: ${(props) => props.focusStyles?.color || "#333"};
   }
 `;
 
@@ -46,12 +56,22 @@ const StyledTextArea = styled.textarea<StyledTextAreaProps>`
   box-sizing: border-box;
   outline: none;
   resize: none;
-  &::placeholder{
+  &::placeholder {
     color: #808080;
     font-family: ${(props) => props.customStyles?.fontFamily || ""};
     font-weight: normal;
   }
+  &:hover {
+    background-color: ${(props) =>
+      props.hoverStyles?.backgroundColor || "#edf1f2"};
+    color: ${(props) => props.hoverStyles?.color || "#333"};
+  }
 
+  &:focus-within {
+    background-color: ${(props) =>
+      props.focusStyles?.backgroundColor || "#FFF"};
+    color: ${(props) => props.focusStyles?.color || "#333"};
+  }
   &::-webkit-scrollbar {
     width: 7px;
     height: 0px;
